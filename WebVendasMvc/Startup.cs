@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebVendasMvc.Data;
+using WebVendasMvc.Services;
 
 namespace WebVendasMvc
 {
@@ -39,7 +40,8 @@ namespace WebVendasMvc
             services.AddDbContext<WebVendasMvcContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("WebVendasMvcContext"), builder => builder.MigrationsAssembly("WebVendasMvc")));
         
-        services.AddScoped<SeedingServices>();        
+            services.AddScoped<SeedingServices>();
+            services.AddScoped<VendedorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

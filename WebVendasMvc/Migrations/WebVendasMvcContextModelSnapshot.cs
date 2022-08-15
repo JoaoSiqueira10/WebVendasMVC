@@ -58,7 +58,7 @@ namespace WebVendasMvc.Migrations
 
                     b.Property<string>("Email");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Nome");
 
                     b.Property<DateTime>("Nascimento");
 
