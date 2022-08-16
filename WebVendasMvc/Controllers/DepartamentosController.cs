@@ -25,8 +25,8 @@ namespace WebVendasMvc.Controllers
             return View(await _context.Departamento.ToListAsync());
         }
 
-        // GET: Departamentos/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: Departamentos/Detalhes/5
+        public async Task<IActionResult> Detalhes(int? id)
         {
             if (id == null)
             {
@@ -43,18 +43,18 @@ namespace WebVendasMvc.Controllers
             return View(departamento);
         }
 
-        // GET: Departamentos/Create
-        public IActionResult Create()
+        // GET: Departamentos/Criar
+        public IActionResult Criar()
         {
             return View();
         }
 
-        // POST: Departamentos/Create
+        // POST: Departamentos/Criar
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome")] Departamento departamento)
+        public async Task<IActionResult> Criar([Bind("Id,Nome")] Departamento departamento)
         {
             if (ModelState.IsValid)
             {
@@ -65,8 +65,8 @@ namespace WebVendasMvc.Controllers
             return View(departamento);
         }
 
-        // GET: Departamentos/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Departamentos/Editar/5
+        public async Task<IActionResult> Editar(int? id)
         {
             if (id == null)
             {
@@ -81,12 +81,12 @@ namespace WebVendasMvc.Controllers
             return View(departamento);
         }
 
-        // POST: Departamentos/Edit/5
+        // POST: Departamentos/Editar/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Departamento departamento)
+        public async Task<IActionResult> Editar(int id, [Bind("Id,Nome")] Departamento departamento)
         {
             if (id != departamento.Id)
             {
@@ -116,8 +116,8 @@ namespace WebVendasMvc.Controllers
             return View(departamento);
         }
 
-        // GET: Departamentos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: Departamentos/Deletar/5
+        public async Task<IActionResult> Deletar(int? id)
         {
             if (id == null)
             {
@@ -134,10 +134,10 @@ namespace WebVendasMvc.Controllers
             return View(departamento);
         }
 
-        // POST: Departamentos/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Departamentos/Deletar/5
+        [HttpPost, ActionName("Deletar")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeletarConfirmed(int id)
         {
             var departamento = await _context.Departamento.FindAsync(id);
             _context.Departamento.Remove(departamento);

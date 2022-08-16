@@ -7,7 +7,7 @@ namespace WebVendasMvc.Models
     public class Vendedor
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Nome { get; set; }
         public string Email { get; set; }
         public DateTime Nascimento { get; set; }
         public double SalarioBase { get; set; }
@@ -20,10 +20,10 @@ namespace WebVendasMvc.Models
 
         }
 
-        public Vendedor(int id, string name, string email, DateTime nascimento, double salarioBase, Departamento departamento)
+        public Vendedor(int id, string nome, string email, DateTime nascimento, double salarioBase, Departamento departamento)
         {
             Id = id;
-            Name = name;
+            Nome = nome;
             Email = email;
             Nascimento = nascimento;
             SalarioBase = salarioBase;

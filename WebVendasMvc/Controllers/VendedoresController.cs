@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using WebVendasMvc.Models;
 using WebVendasMvc.Models.ViewModels;
 using WebVendasMvc.Services;
+using WebVendasMvc.Services.Exceptions;
 
 namespace WebVendasMvc.Controllers
 {
@@ -22,7 +24,7 @@ namespace WebVendasMvc.Controllers
             return View(list);
         }
 
-        public IActionResult Create()
+        public IActionResult Criar()
         {
             var departamentos = _departamentoService.FindAll();
             var viewModel = new VendedorFormViewModel { Departamentos = departamentos };
@@ -31,7 +33,7 @@ namespace WebVendasMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Vendedor vendedor)
+        public IActionResult Criar(Vendedor vendedor)
         {
             _vendedorService.Insert(vendedor);
             return RedirectToAction(nameof(Index));
@@ -75,6 +77,45 @@ namespace WebVendasMvc.Controllers
             }
 
             return View(obj);
+        }
+
+        public IActionResult Editar(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+            var obj = _vendedorService.FindById(id.Value);
+            if(obj == null)
+            {
+                return NotFound();
+            }
+            List<Departamento> departamentos = _departamentoService.FindAll();
+            VendedorFormViewModel viewModel = new VendedorFormViewModel { Vendedor = obj, Departamentos = departamentos };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Editar(int id, Vendedor vendedor)
+        {
+            if(id != vendedor.Id)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                _vendedorService.Update(vendedor);
+                return RedirectToAction(nameof(Index));
+            }
+            catch(KeyNotFoundException)
+            {
+                return NotFound();
+            }
+            catch (DbConcurrencyException)
+            {
+                return BadRequest();
+            }
         }
     }
 }
