@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebVendasMvc.Data;
 using WebVendasMvc.Services;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace WebVendasMvc
 {
@@ -48,6 +50,26 @@ namespace WebVendasMvc
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingServices seedingServices)
         {
+            var ptBR = new CultureInfo("pt-BR");
+            var localizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(ptBR),
+                SupportedCultures = new List<CultureInfo> { ptBR },
+                SupportedUICultures = new List<CultureInfo> { ptBR },
+            };
+
+           /* 
+            * var enUS = new CultureInfo("en-US");
+            * var localizationOptions = new RequestLocalizationOptions
+            * {
+            *   DefaultRequestCulture = new RequestCulture(enUS),
+            *   SupportedCultures = new List<CultureInfo> { enUS },
+            *   SupportedUICultures = new List<CultureInfo> { enUS },
+            * };
+           */
+
+            app.UseRequestLocalization(localizationOptions);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
