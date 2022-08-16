@@ -8,7 +8,7 @@ namespace WebVendasMvc.Models
         public int Id { get; set; }
         public DateTime Data { get; set; }
         public double Quantidade { get; set; }
-        public EstatusVendas status { get; set; }
+        public EstatusVendas Status { get; set; }
         public Vendedor Vendedor { get; set; }
 
         public RegistroVendas()
@@ -21,7 +21,7 @@ namespace WebVendasMvc.Models
             Id = id;
             Data = data;
             Quantidade = quantidade;
-            this.status = status;
+            Status = status;
             Vendedor = vendedor;
         }
     }
